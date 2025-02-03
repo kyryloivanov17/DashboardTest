@@ -630,7 +630,7 @@ export default function NewCampaignModal_2({
 
             <button
               className={`px-6 py-2 bg-blue-600 ${
-                !(!currentToken && currentStep === 3)
+                !((!currentToken && currentStep === 3) || errorPopup)
                   ? "bg-blue-600 hover:bg-blue-700"
                   : "bg-gray-100 hover:bg-gray-200"
               } text-white rounded-lg `}
