@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { X, Sparkles, Link2, FileText } from "lucide-react";
 import TimeSelect from "./TimeSelect";

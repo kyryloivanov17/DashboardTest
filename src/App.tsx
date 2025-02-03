@@ -14,6 +14,7 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("dashboard");
+  const [currentToken, setCurrentToken] = useState<null | string>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -34,7 +35,10 @@ export default function App() {
         return (
           <div className="space-y-6">
             <DashboardStats />
-            <CampaignsTable />
+            <CampaignsTable
+              currentToken={currentToken}
+              setCurrentToken={setCurrentToken}
+            />
           </div>
         );
       case "leads":
@@ -53,7 +57,10 @@ export default function App() {
         return (
           <div className="space-y-6">
             <DashboardStats />
-            <CampaignsTable />
+            <CampaignsTable
+              currentToken={currentToken}
+              setCurrentToken={setCurrentToken}
+            />
           </div>
         );
     }

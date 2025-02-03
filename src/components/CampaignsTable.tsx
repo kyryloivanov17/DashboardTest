@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import {
   Edit,
@@ -53,7 +54,15 @@ const getTypeColor = (type: Campaign["type"]) => {
   }
 };
 
-export default function CampaignsTable() {
+interface CampainTableI {
+  currentToken: string | null;
+  setCurrentToken: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export default function CampaignsTable({
+  currentToken,
+  setCurrentToken,
+}: CampainTableI) {
   const dispatch = useDispatch<AppDispatch>();
   const {
     items: campaigns,
@@ -73,7 +82,6 @@ export default function CampaignsTable() {
     },
   });
   let t = true;
-  const [currentToken, setCurrentToken] = useState(null);
 
   const loginMutation = useMutation({
     mutationFn: fetchLogin,
