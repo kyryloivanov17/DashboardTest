@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { X, Sparkles, Link2, FileText } from "lucide-react";
-import type { ChatMessage } from "../../types/chat";
-import { fetchChatHistory } from "../../api/chats";
-import type { Lead } from "../../types/lead";
 import TimeSelect from "./TimeSelect";
-import { fetchLogin } from "../../api/login";
-import { fetchCreateNewCamp } from "../../api/campaigns";
 import { useDispatch } from "react-redux";
 import { setValue } from "../../store/slices/campaignsSlice";
 import { AppDispatch } from "../../store/store";
@@ -216,7 +211,7 @@ export default function NewCampaignModal_2({
       body: JSON.stringify(data?.formData),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         if (currentToken) {
           getAllCampaigns(currentToken);
         }

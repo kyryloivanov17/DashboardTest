@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Edit,
   Search,
@@ -72,17 +72,19 @@ export default function CampaignsTable() {
       end: "",
     },
   });
-
+  let t = true;
   const [currentToken, setCurrentToken] = useState(null);
 
   const loginMutation = useMutation({
     mutationFn: fetchLogin,
+    onSuccess: () => {
+      t = false;
+    },
   });
 
-  let t = true;
   useEffect(() => {
-    if (!currentToken && t) {
-      t = false;
+    console.log(currentToken, "currentToken", t);
+    if (!currentToken) {
       loginMutation.mutate();
     }
   }, [currentToken]);
@@ -100,10 +102,6 @@ export default function CampaignsTable() {
   const onCloseCampaignHandler = () => {
     setIsNewCampaign(false);
   };
-
-  useEffect(() => {
-    console.log(isNewCampaign, "isNewCampaign");
-  }, [isNewCampaign]);
 
   useEffect(() => {
     if (status === "idle") {
